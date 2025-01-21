@@ -1,3 +1,4 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -18,12 +19,12 @@
             <td>${user.name}</td>
             <td>${user.email}</td>
             <td>
-                <a href="/users/delete?id=${user.id}">Delete</a>
+                <a href="/users/delete?id=${user.id}" onclick="return confirm('Are you sure you want to delete this user?');">Delete</a>
             </td>
         </tr>
     </c:forEach>
 </table>
-<br>
+<br/>
 <a href="/users/create">Create New User</a>
 </body>
 </html>

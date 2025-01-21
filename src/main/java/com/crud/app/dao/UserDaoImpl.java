@@ -26,15 +26,16 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public List<User> getAllUsers() {
-        return entityManager.createQuery("SELECT u FROM User u", User.class).getResultList();
+        // Используем упрощённый запрос "FROM User"
+        return entityManager.createQuery("FROM User", User.class).getResultList();
     }
 
     @Override
     @Transactional
     public void deleteUserById(Long id) {
-        User user = getUserById(id);
-        if (user != null) {
-            entityManager.remove(user);
-        }
+        // Удаляем пользователя одним запросом
+        entityManager.createQuery("DELETE FROM User u WHERE u.id = :id")
+                .setParameter("id", id)
+                .executeUpdate();
     }
 }

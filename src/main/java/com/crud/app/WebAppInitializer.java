@@ -11,15 +11,16 @@ public class WebAppInitializer implements WebApplicationInitializer {
 
     @Override
     public void onStartup(ServletContext servletContext) throws ServletException {
-        // Create the root application context
+        // Создаём контекст для корневого приложения
         AnnotationConfigWebApplicationContext rootContext = new AnnotationConfigWebApplicationContext();
         rootContext.register(AppConfig.class);
+        servletContext.addListener(new org.springframework.web.context.ContextLoaderListener(rootContext));
 
-        // Create the dispatcher servlet application context
+        // Создаём контекст для DispatcherServlet
         AnnotationConfigWebApplicationContext dispatcherContext = new AnnotationConfigWebApplicationContext();
         dispatcherContext.register(WebConfig.class);
 
-        // Register the DispatcherServlet
+        // Регистрируем DispatcherServlet
         ServletRegistration.Dynamic dispatcher = servletContext.addServlet("dispatcher", new DispatcherServlet(dispatcherContext));
         dispatcher.setLoadOnStartup(1);
         dispatcher.addMapping("/");

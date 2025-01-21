@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 @Controller
@@ -23,13 +22,13 @@ public class UserController {
     public String listUsers(Model model) {
         List<User> users = userService.getAllUsers();
         model.addAttribute("users", users);
-        return "users"; // Ensure this JSP file exists at /WEB-INF/views/users.jsp
+        return "users"; // Убедитесь, что файл users.jsp существует в /WEB-INF/views/
     }
 
     @GetMapping("/create")
     public String showCreateForm(Model model) {
         model.addAttribute("user", new User());
-        return "create_user"; // Ensure this JSP file exists at /WEB-INF/views/create_user.jsp
+        return "create_user"; // Убедитесь, что файл create_user.jsp существует в /WEB-INF/views/
     }
 
     @PostMapping("/create")
