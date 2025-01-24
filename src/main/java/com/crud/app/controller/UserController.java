@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 
 @Controller
@@ -18,12 +19,14 @@ public class UserController {
         this.userService = userService;
     }
 
+
     @GetMapping
     public String listUsers(Model model) {
         List<User> users = userService.getAllUsers();
         model.addAttribute("users", users);
-        return "users"; // Убедитесь, что файл users.jsp существует в /WEB-INF/views/
+        return "users";
     }
+
 
     @GetMapping("/create")
     public String showCreateForm(Model model) {
@@ -31,15 +34,34 @@ public class UserController {
         return "create_user"; // Убедитесь, что файл create_user.jsp существует в /WEB-INF/views/
     }
 
+
     @PostMapping("/create")
     public String createUser(@ModelAttribute User user) {
         userService.createUser(user);
         return "redirect:/users";
     }
 
+
     @GetMapping("/delete")
     public String deleteUser(@RequestParam Long id) {
         userService.deleteUserById(id);
+        return "redirect:/users";
+    }
+
+
+    @GetMapping("/edit")
+    public String showEditForm(@RequestParam Long id, Model model) {
+        User user = userService.getUserById(id);
+        if (user == null) {
+            return "redirect:/users";
+        }
+        model.addAttribute("user", user);
+        return "edit_user";
+    }
+
+    @PostMapping("/edit")
+    public String updateUser(@ModelAttribute User user) {
+        userService.updateUser(user);
         return "redirect:/users";
     }
 }

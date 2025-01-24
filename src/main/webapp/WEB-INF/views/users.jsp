@@ -11,7 +11,7 @@
         <th>ID</th>
         <th>Name</th>
         <th>Email</th>
-        <th>Action</th>
+        <th>Actions</th> <!-- Изменено заголовок колонки -->
     </tr>
     <c:forEach var="user" items="${users}">
         <tr>
@@ -19,6 +19,7 @@
             <td>${user.name}</td>
             <td>${user.email}</td>
             <td>
+                <a href="/users/edit?id=${user.id}">Edit</a> |
                 <a href="/users/delete?id=${user.id}" onclick="return confirm('Are you sure you want to delete this user?');">Delete</a>
             </td>
         </tr>

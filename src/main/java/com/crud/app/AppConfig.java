@@ -19,7 +19,7 @@ public class AppConfig {
     public DataSource dataSource() {
         BasicDataSource dataSource = new BasicDataSource();
         dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
-        dataSource.setUrl("jdbc:mysql://localhost:3306/your_database");
+        dataSource.setUrl("jdbc:mysql://localhost:3306/your_database"); // Замените на ваши параметры
         dataSource.setUsername("your_username");
         dataSource.setPassword("your_password");
         return dataSource;
