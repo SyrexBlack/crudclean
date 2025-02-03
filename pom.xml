@@ -14,19 +14,14 @@
     <description>Spring MVC + JPA CRUD application</description>
 
     <properties>
-        <!-- Версия Java, которую вы используете -->
         <java.version>21</java.version>
-        <!-- Версия Spring Boot (используется Spring Boot 3 для работы с jakarta.persistence) -->
         <spring-boot.version>3.0.5</spring-boot.version>
-        <!-- Версия mysql-connector-java -->
         <mysql.connector.version>8.0.33</mysql.connector.version>
-        <!-- Версия плагина maven-war-plugin -->
         <maven.war.plugin.version>3.3.2</maven.war.plugin.version>
     </properties>
 
     <dependencyManagement>
         <dependencies>
-            <!-- Управление зависимостями Spring Boot -->
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-dependencies</artifactId>
@@ -36,42 +31,30 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
-
     <dependencies>
-        <!-- Spring Boot Starter Web (включает Spring MVC) -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
-
-        <!-- Spring Boot Starter Data JPA -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jpa</artifactId>
         </dependency>
-
-        <!-- MySQL Connector -->
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
             <version>${mysql.connector.version}</version>
             <scope>runtime</scope>
         </dependency>
-
-        <!-- Jakarta Persistence API -->
         <dependency>
             <groupId>jakarta.persistence</groupId>
             <artifactId>jakarta.persistence-api</artifactId>
             <version>3.1.0</version>
         </dependency>
-
-        <!-- Apache Commons DBCP2 для пула соединений -->
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-dbcp2</artifactId>
         </dependency>
-
-        <!-- JSTL для JSP -->
         <dependency>
             <groupId>jakarta.servlet.jsp.jstl</groupId>
             <artifactId>jakarta.servlet.jsp.jstl-api</artifactId>
@@ -82,18 +65,14 @@
             <artifactId>jakarta.servlet.jsp.jstl</artifactId>
             <version>3.0.1</version>
         </dependency>
-
-        <!-- Servlet API (provided, контейнер предоставит) -->
         <dependency>
             <groupId>jakarta.servlet</groupId>
             <artifactId>jakarta.servlet-api</artifactId>
             <scope>provided</scope>
         </dependency>
     </dependencies>
-
     <build>
         <plugins>
-            <!-- Maven Compiler Plugin -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -104,14 +83,11 @@
                     <release>21</release>
                 </configuration>
             </plugin>
-            <!-- Spring Boot Maven Plugin -->
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <version>${spring-boot.version}</version>
             </plugin>
-
-            <!-- Maven WAR Plugin -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-war-plugin</artifactId>
