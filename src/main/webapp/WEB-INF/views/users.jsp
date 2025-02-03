@@ -1,17 +1,16 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
     <title>User List</title>
 </head>
 <body>
-<h1>Users</h1>
+<h1>User List</h1>
 <table border="1">
     <tr>
         <th>ID</th>
         <th>Name</th>
         <th>Email</th>
-        <th>Actions</th> <!-- Изменено заголовок колонки -->
+        <th>Actions</th>
     </tr>
     <c:forEach var="user" items="${users}">
         <tr>
@@ -19,13 +18,14 @@
             <td>${user.name}</td>
             <td>${user.email}</td>
             <td>
-                <a href="/users/edit?id=${user.id}">Edit</a> |
-                <a href="/users/delete?id=${user.id}" onclick="return confirm('Are you sure you want to delete this user?');">Delete</a>
+                <a href="${pageContext.request.contextPath}/users/edit?id=${user.id}">Edit</a>|
+                <a href="${pageContext.request.contextPath}/users/delete?id=${user.id}">Delete</a>
             </td>
         </tr>
     </c:forEach>
 </table>
 <br/>
-<a href="/users/create">Create New User</a>
+<a href="${pageContext.request.contextPath}/users/create">Create New User</a>
+
 </body>
 </html>

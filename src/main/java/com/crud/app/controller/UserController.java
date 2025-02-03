@@ -12,6 +12,7 @@ import java.util.List;
 @Controller
 @RequestMapping("/users")
 public class UserController {
+
     private final UserService userService;
 
     @Autowired
@@ -19,7 +20,7 @@ public class UserController {
         this.userService = userService;
     }
 
-
+    // Отображение списка пользователей
     @GetMapping
     public String listUsers(Model model) {
         List<User> users = userService.getAllUsers();
@@ -31,7 +32,7 @@ public class UserController {
     @GetMapping("/create")
     public String showCreateForm(Model model) {
         model.addAttribute("user", new User());
-        return "create_user"; // Убедитесь, что файл create_user.jsp существует в /WEB-INF/views/
+        return "create_user";
     }
 
 
@@ -52,12 +53,13 @@ public class UserController {
     @GetMapping("/edit")
     public String showEditForm(@RequestParam Long id, Model model) {
         User user = userService.getUserById(id);
-        if (user == null) {
+        if(user == null){
             return "redirect:/users";
         }
         model.addAttribute("user", user);
         return "edit_user";
     }
+
 
     @PostMapping("/edit")
     public String updateUser(@ModelAttribute User user) {
